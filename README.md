@@ -5,14 +5,21 @@ You can protect a link with a password.
 
 ## Build and install
 
-Requires Maven 3.9+ and JDK 17 or 21.
+Requires Make, Maven 3.9+ and JDK 21 or newer. Set `JAVA_HOME` to your JDK installation. The JAR targets Java 17.
+Run the build from the repository root:
 
 ```bash
-cd ~/PersonalProjects/confluence-share
-mvn clean verify
+make build
 ```
 
-Upload `target/confluence-share-0.1.0.jar` through **Manage apps → Upload app** in Confluence administration.
+`make build` runs `mvn clean verify`: it checks formatting and code conventions, compiles with Error Prone,
+runs JUnit tests and SpotBugs, and requires at least 80% line coverage and 70% branch coverage.
+Run `make format` to format the code. Running `make` without a target also builds the plugin.
+The coverage report is `target/site/jacoco/index.html`. GitHub Actions checks the build and local preview with JDK 21
+and 25 on pushes and pull requests.
+
+Upload the built `confluence-share-*.jar` from `target/` through **Manage apps → Upload app** in Confluence
+administration.
 Installation requires system administrator permissions.
 
 If **Upload app** is missing, add the JVM option `-Dupm.plugin.upload.enabled=true` and restart Confluence. Apply it to
@@ -71,11 +78,11 @@ Other macros do not run. Child pages, comments, version history and the full att
 ## Local preview
 
 ```bash
-bash scripts/preview.sh
+make preview
 ```
 
-Open `http://127.0.0.1:8098/wiki/plugins/servlet/confluence-share/manage?pageId=1`. Pass a different port as an
-argument: `bash scripts/preview.sh 8099`. Stop the preview with Ctrl+C.
+Open `http://127.0.0.1:8098/wiki/plugins/servlet/confluence-share/manage?pageId=1`.
+Use `make preview PORT=8099` to choose a different port. Stop the preview with Ctrl+C.
 
 The preview uses a test page and in-memory data. It does not connect to a real Confluence instance. Restarting clears
 its links.

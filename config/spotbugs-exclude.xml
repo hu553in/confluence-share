@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <!-- These three fields hold shared services supplied by Confluence's Spring container.
+         They must retain the host instances, rather than copies. -->
+    <Match>
+        <Class name="dev.confluenceshare.ConfluencePages" />
+        <Field name="~(pageManager|attachmentManager|users)" />
+        <Bug pattern="EI_EXPOSE_REP2" />
+    </Match>
+    <!-- Confluence creates these servlets through Spring. Serializing them and their injected
+         host services is not a supported lifecycle. -->
+    <Match>
+        <Or>
+            <Class name="dev.confluenceshare.ManageServlet" />
+            <Class name="dev.confluenceshare.PublicServlet" />
+        </Or>
+        <Bug pattern="SE_BAD_FIELD,SE_NO_SERIALVERSIONID" />
+    </Match>
+</FindBugsFilter>
