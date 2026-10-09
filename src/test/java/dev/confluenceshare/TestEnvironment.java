@@ -19,11 +19,11 @@ import java.util.concurrent.locks.ReentrantLock;
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.http.HttpServletRequest;
+import org.eclipse.jetty.ee8.servlet.FilterHolder;
+import org.eclipse.jetty.ee8.servlet.ServletContextHandler;
+import org.eclipse.jetty.ee8.servlet.ServletHolder;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
-import org.eclipse.jetty.servlet.FilterHolder;
-import org.eclipse.jetty.servlet.ServletContextHandler;
-import org.eclipse.jetty.servlet.ServletHolder;
 
 /** Test host boundaries only. The store, renderer and HTTP handlers are the production classes. */
 final class TestEnvironment implements AutoCloseable {

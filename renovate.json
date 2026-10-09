@@ -1,0 +1,31 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>hu553in/common-things//presets/renovate/maven",
+    "github>hu553in/common-things//presets/renovate/bun"
+  ],
+  "ignorePresets": ["workarounds:javaLTSVersions"],
+  "enabledManagers": ["bun", "custom.regex", "github-actions", "maven", "maven-wrapper"],
+  "packageRules": [
+    {
+      "description": "Keep provided APIs aligned with the supported Confluence platform",
+      "matchManagers": ["maven"],
+      "matchDepTypes": ["provided"],
+      "enabled": false
+    },
+    {
+      "description": "Keep descriptor parser tests aligned with the supported Confluence platform",
+      "matchManagers": ["maven"],
+      "matchPackageNames": [
+        "com.atlassian.plugins:atlassian-plugins-api",
+        "com.atlassian.plugins:atlassian-plugins-webfragment"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Keep Google Java Format compatible with Spotless's enum-based Style API",
+      "matchPackageNames": ["com.google.googlejavaformat:google-java-format"],
+      "allowedVersions": "(,1.37)"
+    }
+  ]
+}

@@ -1,35 +1,45 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:osgi="http://www.springframework.org/schema/osgi"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-                        http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd">
-    <osgi:reference id="pageManager" interface="com.atlassian.confluence.pages.PageManager" />
-    <osgi:reference id="attachmentManager"
-        interface="com.atlassian.confluence.pages.AttachmentManager" />
-    <osgi:reference id="permissionManager"
-        interface="com.atlassian.confluence.security.PermissionManager" />
-    <osgi:reference id="userAccessor" interface="com.atlassian.confluence.user.UserAccessor" />
-    <osgi:reference id="userManager" interface="com.atlassian.sal.api.user.UserManager" />
-    <osgi:reference id="applicationProperties"
-        interface="com.atlassian.sal.api.ApplicationProperties" />
-    <osgi:reference id="pluginSettingsFactory"
-        interface="com.atlassian.sal.api.pluginsettings.PluginSettingsFactory" />
-    <osgi:reference id="clusterLockService" interface="com.atlassian.beehive.ClusterLockService" />
-    <bean id="confluencePages" class="dev.confluenceshare.ConfluencePages">
-        <constructor-arg ref="pageManager" />
-        <constructor-arg ref="attachmentManager" />
-        <constructor-arg ref="permissionManager" />
-        <constructor-arg ref="userAccessor" />
-        <constructor-arg ref="userManager" />
-        <constructor-arg ref="applicationProperties" />
-    </bean>
-    <bean id="shareStore" class="dev.confluenceshare.ShareStore">
-        <constructor-arg ref="pluginSettingsFactory" />
-        <constructor-arg ref="clusterLockService" />
-    </bean>
-    <bean id="shareService" class="dev.confluenceshare.ShareService">
-        <constructor-arg ref="shareStore" />
-        <constructor-arg ref="confluencePages" />
-    </bean>
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:osgi="http://www.springframework.org/schema/osgi"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd"
+>
+  <osgi:reference id="pageManager" interface="com.atlassian.confluence.pages.PageManager" />
+  <osgi:reference
+    id="attachmentManager"
+    interface="com.atlassian.confluence.pages.AttachmentManager"
+  />
+  <osgi:reference
+    id="permissionManager"
+    interface="com.atlassian.confluence.security.PermissionManager"
+  />
+  <osgi:reference id="userAccessor" interface="com.atlassian.confluence.user.UserAccessor" />
+  <osgi:reference id="userManager" interface="com.atlassian.sal.api.user.UserManager" />
+  <osgi:reference
+    id="applicationProperties"
+    interface="com.atlassian.sal.api.ApplicationProperties"
+  />
+  <osgi:reference
+    id="pluginSettingsFactory"
+    interface="com.atlassian.sal.api.pluginsettings.PluginSettingsFactory"
+  />
+  <osgi:reference id="clusterLockService" interface="com.atlassian.beehive.ClusterLockService" />
+  <bean id="confluencePages" class="dev.confluenceshare.ConfluencePages">
+    <constructor-arg ref="pageManager" />
+    <constructor-arg ref="attachmentManager" />
+    <constructor-arg ref="permissionManager" />
+    <constructor-arg ref="userAccessor" />
+    <constructor-arg ref="userManager" />
+    <constructor-arg ref="applicationProperties" />
+  </bean>
+  <bean id="shareStore" class="dev.confluenceshare.ShareStore">
+    <constructor-arg ref="pluginSettingsFactory" />
+    <constructor-arg ref="clusterLockService" />
+  </bean>
+  <bean id="shareService" class="dev.confluenceshare.ShareService">
+    <constructor-arg ref="shareStore" />
+    <constructor-arg ref="confluencePages" />
+  </bean>
 </beans>

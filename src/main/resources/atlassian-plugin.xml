@@ -1,29 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<atlassian-plugin key="dev.confluenceshare.confluence-share" name="Confluence Share"
-    plugins-version="2">
-    <plugin-info>
-        <description>Public links to individual pages with optional password protection.</description>
-        <version>${project.version}</version>
-        <vendor name="Confluence Share" />
-    </plugin-info>
-    <servlet key="manage-share" name="Manage public links" class="dev.confluenceshare.ManageServlet">
-        <url-pattern>/confluence-share/manage</url-pattern>
-    </servlet>
-    <servlet key="public-share" name="View public links" class="dev.confluenceshare.PublicServlet">
-        <url-pattern>/confluence-share/s/*</url-pattern>
-    </servlet>
-    <web-item key="share-page-link" name="Public page link"
-        section="system.content.action/secondary"
-        weight="500">
-        <label>Public link</label>
-        <link linkId="confluence-share-page-link">
+<?xml version="1.0" encoding="UTF-8" ?>
+<atlassian-plugin
+  key="dev.confluenceshare.confluence-share"
+  name="Confluence Share"
+  plugins-version="2"
+>
+  <plugin-info>
+    <description>Public links to individual pages with optional password protection.</description>
+    <version>${project.version}</version>
+    <vendor name="Confluence Share" />
+  </plugin-info>
+  <servlet key="manage-share" name="Manage public links" class="dev.confluenceshare.ManageServlet">
+    <url-pattern>/confluence-share/manage</url-pattern>
+  </servlet>
+  <servlet key="public-share" name="View public links" class="dev.confluenceshare.PublicServlet">
+    <url-pattern>/confluence-share/s/*</url-pattern>
+  </servlet>
+  <web-item
+    key="share-page-link"
+    name="Public page link"
+    section="system.content.action/secondary"
+    weight="500"
+  >
+    <label>Public link</label>
+    <link linkId="confluence-share-page-link">
             /plugins/servlet/confluence-share/manage?pageId=$page.id
         </link>
-        <conditions type="AND">
-            <condition
-                class="com.atlassian.confluence.plugin.descriptor.web.conditions.HasPageCondition" />
-            <condition
-                class="com.atlassian.confluence.plugin.descriptor.web.conditions.user.UserLoggedInCondition" />
-        </conditions>
-    </web-item>
+    <conditions type="AND">
+      <condition
+        class="com.atlassian.confluence.plugin.descriptor.web.conditions.HasPageCondition"
+      />
+      <condition
+        class="com.atlassian.confluence.plugin.descriptor.web.conditions.user.UserLoggedInCondition"
+      />
+    </conditions>
+  </web-item>
 </atlassian-plugin>
