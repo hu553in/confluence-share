@@ -3,10 +3,10 @@
 # macOS ships Make 3.81, which ignores .SHELLFLAGS and .ONESHELL.
 SHELL := /bin/bash -euo pipefail
 
-PRETTIER := bun run --silent prettier -u
-STYLELINT := bun run --silent stylelint --max-warnings 0
-ACTIONLINT := bun run --silent github-actionlint
-TAPLO := bun run --silent taplo
+PRETTIER := bun --silent prettier -u
+STYLELINT := bun --silent stylelint --max-warnings 0
+ACTIONLINT := bun --silent github-actionlint
+TAPLO := bun --silent taplo
 SHELLCHECK := bunx shellcheck
 SHFMT := shfmt
 PREK ?= prek
