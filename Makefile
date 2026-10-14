@@ -46,18 +46,6 @@ check-workflows:
 check-renovate:
 	bunx --package renovate renovate-config-validator --strict --no-global renovate.json
 
-.PHONY: test
-test:
-	./mvnw test
-
-.PHONY: build
-build:
-	./mvnw package -DskipTests
-
-.PHONY: preview
-preview:
-	bash scripts/preview.sh "$(PORT)"
-
 .PHONY: check-preview
 check-preview:
 	bash scripts/check-preview.sh
@@ -70,3 +58,15 @@ check: lint check-hooks check-workflows check-renovate
 .PHONY: check-fix
 check-fix: lint-fix
 	$(MAKE) check
+
+.PHONY: test
+test:
+	./mvnw test
+
+.PHONY: build
+build:
+	./mvnw package -DskipTests
+
+.PHONY: preview
+preview:
+	bash scripts/preview.sh "$(PORT)"

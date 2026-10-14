@@ -46,9 +46,9 @@ jobs:
           cache: false
       - uses: hu553in/common-things/.github/actions/setup-shfmt@main
       - run: make install-deps
-      - run: make check
-        env:
+      - env:
           PREK: uvx prek
+        run: make check
       - if: always()
         uses: actions/upload-artifact@v7
         with:
