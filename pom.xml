@@ -16,7 +16,7 @@
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <confluence.version>9.2.4</confluence.version>
-    <error-prone.version>2.50.0</error-prone.version>
+    <error-prone.version>2.51.0</error-prone.version>
     <!-- renovate: datasource=maven depName=com.google.googlejavaformat:google-java-format -->
     <google-java-format.version>1.36.1</google-java-format.version>
     <jetty.version>12.1.14</jetty.version>
