@@ -47,6 +47,7 @@ jobs:
       - uses: hu553in/common-things/.github/actions/setup-shfmt@main
       - run: make install-deps
       - env:
+          GITHUB_TOKEN: ${{ github.token }}
           PREK: uvx prek
         run: make check
       - if: always()
@@ -60,6 +61,7 @@ jobs:
             target/spotbugsXml.xml
             target/preview.log
           if-no-files-found: ignore
+          overwrite: true
           retention-days: 14
       - uses: actions/upload-artifact@v7
         with:
