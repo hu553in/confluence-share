@@ -13,17 +13,9 @@ concurrency:
 
 jobs:
   check:
-    name: Java ${{ matrix.java }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    strategy:
-      fail-fast: false
-      matrix:
-        java:
-          - '21'
-          # renovate: datasource=java-version depName=java
-          - '27'
     steps:
       - uses: actions/checkout@v7
         with:
@@ -31,7 +23,7 @@ jobs:
       - uses: actions/setup-java@v6
         with:
           distribution: temurin
-          java-version: ${{ matrix.java }}
+          java-version: '27'
           cache: maven
       - uses: actions/setup-node@v7
         with:
@@ -53,7 +45,7 @@ jobs:
       - if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: reports-java-${{ matrix.java }}
+          name: reports
           path: |
             target/surefire-reports/
             target/site/jacoco/
@@ -65,7 +57,7 @@ jobs:
           retention-days: 14
       - uses: actions/upload-artifact@v7
         with:
-          name: confluence-share-java-${{ matrix.java }}
+          name: confluence-share
           path: target/confluence-share-*.jar
           if-no-files-found: error
           retention-days: 14

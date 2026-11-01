@@ -5,7 +5,7 @@
     "github>hu553in/common-things//presets/renovate/bun"
   ],
   "ignorePresets": ["workarounds:javaLTSVersions"],
-  "enabledManagers": ["bun", "custom.regex", "github-actions", "maven", "maven-wrapper"],
+  "enabledManagers": ["bun", "custom.regex", "github-actions", "maven", "maven-wrapper", "mise"],
   "packageRules": [
     {
       "description": "Keep provided APIs aligned with the supported Confluence platform",
