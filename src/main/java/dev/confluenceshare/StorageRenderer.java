@@ -91,6 +91,8 @@ final class StorageRenderer {
     if (!(node instanceof Element element)) return;
     String tag = element.tagName();
     if (TAGS.contains(tag)) {
+      // Confluence storage still marks monospace text with <tt>, which HTML no longer defines.
+      if (tag.equals("tt")) tag = "code";
       out.append('<').append(tag);
       if (tag.equals("th") || tag.equals("td")) {
         numericAttribute(element, out, "colspan", 100);

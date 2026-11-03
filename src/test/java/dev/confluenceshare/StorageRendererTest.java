@@ -129,6 +129,11 @@ class StorageRendererTest {
   }
 
   @Test
+  void rendersMonospaceTtAsCode() {
+    assertEquals("<p><code>value</code></p>", render("<p><tt>value</tt></p>").html());
+  }
+
+  @Test
   void labelsWithoutExplicitBodyUseTheStoredResourceName() {
     var result =
         render(
