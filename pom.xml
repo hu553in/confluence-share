@@ -19,7 +19,7 @@
     <error-prone.version>2.52.0</error-prone.version>
     <!-- renovate: datasource=maven depName=com.google.googlejavaformat:google-java-format -->
     <google-java-format.version>1.36.1</google-java-format.version>
-    <jetty.version>12.1.14</jetty.version>
+    <jetty.version>12.1.15</jetty.version>
   </properties>
   <repositories>
     <repository>
