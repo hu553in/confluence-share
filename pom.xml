@@ -15,10 +15,9 @@
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <confluence.version>9.2.4</confluence.version>
+    <confluence.version>9.2.28</confluence.version>
     <error-prone.version>2.53.0</error-prone.version>
-    <!-- renovate: datasource=maven depName=com.google.googlejavaformat:google-java-format -->
-    <google-java-format.version>1.36.1</google-java-format.version>
+    <google-java-format.version>2.0.0</google-java-format.version>
     <jetty.version>12.1.15</jetty.version>
   </properties>
   <repositories>
@@ -32,7 +31,7 @@
     <dependency>
       <groupId>com.atlassian.core</groupId>
       <artifactId>atlassian-core</artifactId>
-      <version>9.0.0</version>
+      <version>9.0.10</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -80,7 +79,7 @@
     <dependency>
       <groupId>com.atlassian.sal</groupId>
       <artifactId>sal-api</artifactId>
-      <version>6.0.5</version>
+      <version>6.0.15</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -92,7 +91,7 @@
     <dependency>
       <groupId>com.atlassian.user</groupId>
       <artifactId>atlassian-user</artifactId>
-      <version>3.0</version>
+      <version>3.0.3</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -104,7 +103,7 @@
     <dependency>
       <groupId>com.atlassian.beehive</groupId>
       <artifactId>beehive-api</artifactId>
-      <version>6.0.0</version>
+      <version>6.0.7</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -116,7 +115,7 @@
     <dependency>
       <groupId>com.atlassian.annotations</groupId>
       <artifactId>atlassian-annotations</artifactId>
-      <version>5.0.2</version>
+      <version>5.1.7</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -134,7 +133,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-tx</artifactId>
-      <version>6.1.14</version>
+      <version>6.2.19-atlassian-1</version>
       <scope>provided</scope>
       <exclusions>
         <exclusion>
@@ -158,13 +157,13 @@
     <dependency>
       <groupId>com.atlassian.plugins</groupId>
       <artifactId>atlassian-plugins-webfragment</artifactId>
-      <version>7.2.0</version>
+      <version>7.2.10</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.atlassian.plugins</groupId>
       <artifactId>atlassian-plugins-api</artifactId>
-      <version>8.1.2</version>
+      <version>8.1.17</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -265,10 +264,9 @@
       <plugin>
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>
-        <version>3.11.0</version>
+        <version>3.12.0</version>
         <configuration>
           <java>
-            <!-- Spotless 3.10.4 expects the enum-based Style API, changed in 1.37.0. -->
             <googleJavaFormat>
               <version>${google-java-format.version}</version>
             </googleJavaFormat>

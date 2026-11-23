@@ -83,16 +83,16 @@ final class TestEnvironment implements AutoCloseable {
             "TEST",
             "Startup guide",
             """
-                <h2>Before you start</h2><p>Check the <strong>settings</strong> and save a backup.</p>
-                <p><ac:inline-comment-marker ac:ref="test-comment">Do not delete the backup.</ac:inline-comment-marker></p>
-                <ac:task-list><ac:task><ac:task-status>complete</ac:task-status><ac:task-body>Check settings</ac:task-body></ac:task>
-                <ac:task><ac:task-status>incomplete</ac:task-status><ac:task-body>Save a backup</ac:task-body></ac:task></ac:task-list>
-                <table><tbody><tr><th>Parameter</th><th>Value</th></tr><tr><td>Environment</td><td>Test</td></tr></tbody></table>
-                <ac:structured-macro ac:name="code"><ac:plain-text-body><![CDATA[curl https://example.com/health]]></ac:plain-text-body></ac:structured-macro>
-                <ac:link><ri:page ri:content-title="Home"/><ac:link-body><ac:image ac:alt="Sample image" ac:title="Diagram for testing the public link"><ri:attachment ri:filename="image.png">
-                <ri:page ri:space-key="TEST" ri:content-title="Startup guide"/></ri:attachment></ac:image></ac:link-body></ac:link>
-                <p><ac:link><ri:attachment ri:filename="guide.txt"/><ac:plain-text-link-body><![CDATA[Download guide]]></ac:plain-text-link-body></ac:link></p>
-                """);
+            <h2>Before you start</h2><p>Check the <strong>settings</strong> and save a backup.</p>
+            <p><ac:inline-comment-marker ac:ref="test-comment">Do not delete the backup.</ac:inline-comment-marker></p>
+            <ac:task-list><ac:task><ac:task-status>complete</ac:task-status><ac:task-body>Check settings</ac:task-body></ac:task>
+            <ac:task><ac:task-status>incomplete</ac:task-status><ac:task-body>Save a backup</ac:task-body></ac:task></ac:task-list>
+            <table><tbody><tr><th>Parameter</th><th>Value</th></tr><tr><td>Environment</td><td>Test</td></tr></tbody></table>
+            <ac:structured-macro ac:name="code"><ac:plain-text-body><![CDATA[curl https://example.com/health]]></ac:plain-text-body></ac:structured-macro>
+            <ac:link><ri:page ri:content-title="Home"/><ac:link-body><ac:image ac:alt="Sample image" ac:title="Diagram for testing the public link"><ri:attachment ri:filename="image.png">
+            <ri:page ri:space-key="TEST" ri:content-title="Startup guide"/></ri:attachment></ac:image></ac:link-body></ac:link>
+            <p><ac:link><ri:attachment ri:filename="guide.txt"/><ac:plain-text-link-body><![CDATA[Download guide]]></ac:plain-text-link-body></ac:link></p>
+            """);
     final Map<String, byte[]> files =
         new ConcurrentHashMap<>(
             Map.of(

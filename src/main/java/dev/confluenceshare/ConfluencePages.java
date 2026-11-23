@@ -69,8 +69,7 @@ public final class ConfluencePages implements PageAccess {
         && permissions.hasPermissionNoExemptions(user, Permission.EDIT, page);
   }
 
-  @SuppressWarnings(
-      "deprecation") // These host managers are available in the targeted 9.2.4 runtime.
+  @SuppressWarnings("deprecation") // These host managers are available in the targeted 9.2 runtime.
   private Page page(long id) {
     Page page = pageManager.getPage(id);
     if (page == null || !page.isCurrent() || !page.isLatestVersion())

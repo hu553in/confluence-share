@@ -7,7 +7,7 @@ PRETTIER := bun --silent prettier -u
 STYLELINT := bun --silent stylelint --max-warnings 0
 ACTIONLINT := bun --silent github-actionlint
 TAPLO := bun --silent taplo
-SHELLCHECK := bunx shellcheck
+SHELLCHECK := bunx --minimum-release-age 259200 shellcheck
 SHFMT := shfmt
 PREK ?= prek
 SHELL_FILES := $(wildcard scripts/*.sh)
@@ -42,16 +42,12 @@ check-hooks:
 check-workflows:
 	$(ACTIONLINT)
 
-.PHONY: check-renovate
-check-renovate:
-	bunx --package renovate renovate-config-validator --strict --no-global renovate.json
-
 .PHONY: check-preview
 check-preview:
 	bash scripts/check-preview.sh
 
 .PHONY: check
-check: lint check-hooks check-workflows check-renovate
+check: lint check-hooks check-workflows
 	./mvnw verify
 	$(MAKE) check-preview
 
