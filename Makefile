@@ -6,11 +6,10 @@ SHELL := /bin/bash -euo pipefail
 PRETTIER := bun --silent prettier -u
 STYLELINT := bun --silent stylelint --max-warnings 0
 ACTIONLINT := bun --silent github-actionlint
-TAPLO := bun --silent taplo
 SHELLCHECK := bunx --minimum-release-age 259200 shellcheck
 SHFMT := shfmt
-PREK ?= prek
 SHELL_FILES := $(wildcard scripts/*.sh)
+PREVIEW_CLASSPATH := dependency:build-classpath -Dmdep.outputFile=target/preview-classpath.txt -DincludeScope=test
 PORT ?= 8098
 
 .PHONY: install-deps
@@ -18,38 +17,45 @@ install-deps:
 	bun install --frozen-lockfile
 
 .PHONY: lint
-lint:
+lint: lint-files
+	./mvnw validate
+
+.PHONY: lint-files
+lint-files:
 	$(PRETTIER) -c .
 	$(STYLELINT) 'src/main/resources/**/*.css'
-	$(TAPLO) fmt --check
+	bun fmt --no-config --check bunfig.toml mise.toml
 	$(SHFMT) -d $(SHELL_FILES)
 	$(SHELLCHECK) $(SHELL_FILES)
-	./mvnw validate
 
 .PHONY: lint-fix
 lint-fix:
-	$(PRETTIER) -w .
 	$(STYLELINT) --fix 'src/main/resources/**/*.css'
-	$(TAPLO) fmt
+	$(PRETTIER) -w .
+	bun fmt --no-config bunfig.toml mise.toml
 	$(SHFMT) -w $(SHELL_FILES)
 	./mvnw spotless:apply
 
 .PHONY: check-hooks
 check-hooks:
-	$(PREK) validate-config prek.toml
+	bunx --minimum-release-age 259200 lefthook validate
 
 .PHONY: check-workflows
 check-workflows:
 	$(ACTIONLINT)
 
 .PHONY: check-preview
-check-preview:
+check-preview: prepare-preview
 	bash scripts/check-preview.sh
 
+.PHONY: prepare-preview
+prepare-preview:
+	./mvnw -q test-compile $(PREVIEW_CLASSPATH)
+
 .PHONY: check
-check: lint check-hooks check-workflows
-	./mvnw verify
-	$(MAKE) check-preview
+check: lint-files check-hooks check-workflows
+	./mvnw verify $(PREVIEW_CLASSPATH)
+	bash scripts/check-preview.sh
 
 .PHONY: check-fix
 check-fix: lint-fix
@@ -64,5 +70,5 @@ build:
 	./mvnw package -DskipTests
 
 .PHONY: preview
-preview:
+preview: prepare-preview
 	bash scripts/preview.sh "$(PORT)"

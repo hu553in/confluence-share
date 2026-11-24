@@ -7,9 +7,9 @@ password. Recipients do not need a Confluence account.
 
 ## Build and install
 
-Requires Make, unzip and a JDK satisfying the build requirement in [pom.xml](pom.xml). Set
-`JAVA_HOME` to your JDK installation. The Maven wrapper downloads Maven; the POM also defines the
-target Confluence API version and Java bytecode level. Run from the repository root:
+Requires Make, unzip and a JDK satisfying the build requirement in [pom.xml](pom.xml). Put the JDK
+on `PATH` or set `JAVA_HOME`. The Maven wrapper downloads Maven. The POM defines the target
+Confluence API version and Java bytecode level. Run from the repository root:
 
 ```bash
 make build
@@ -96,14 +96,12 @@ Restarting clears its links.
 
 ## Development
 
-Repository checks also require Bun, Node.js matching `engines` in [package.json](package.json),
-shfmt, curl and [prek](https://prek.j178.dev/).
+Repository checks also require Bun, shfmt, and curl.
 
 ```bash
 make install-deps
-prek install
+bunx lefthook install
 make check
-make check-fix
 ```
 
 `make check` runs repository checks, Maven verification and a local preview smoke test. Maven

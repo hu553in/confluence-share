@@ -25,10 +25,6 @@ jobs:
           distribution: temurin
           java-version: '27'
           cache: maven
-      - uses: actions/setup-node@v7
-        with:
-          node-version-file: package.json
-      - uses: astral-sh/setup-uv@v10.4.0
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version-file: package.json
@@ -38,10 +34,7 @@ jobs:
           cache: false
       - uses: hu553in/common-things/.github/actions/setup-shfmt@main
       - run: make install-deps
-      - env:
-          GITHUB_TOKEN: ${{ github.token }}
-          PREK: uvx --exclude-newer 3d prek
-        run: make check
+      - run: make check
       - if: always()
         uses: actions/upload-artifact@v7
         with:
